@@ -3,6 +3,7 @@ import { dehydrate } from '@tanstack/react-query';
 import TanStackQuery from '@/containers/TanStackQuery';
 import queryClient from '@/api/reactQueryClient';
 import { getGroupsApi } from '@/api/groupsApi';
+import { getStudentsApi } from '@/api/studentsApi';
 import type GroupInterface from '@/types/GroupInterface';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
@@ -29,6 +30,19 @@ const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
       return groups;
     },
   });
+
+
+  
+  
+
+
+await queryClient.prefetchQuery({
+    queryKey: ['students'],
+    queryFn: getStudentsApi, 
+  });
+
+  const dehydratedState = dehydrate(queryClient);
+
 
   const state = dehydrate(queryClient, { shouldDehydrateQuery: () => true });
 

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import styles from './Menu.module.scss';
+import StudentsList from '@/components/StudentsList';
 
 const Menu = (): React.ReactElement => {
   const pathname = usePathname ();
@@ -13,6 +14,9 @@ const Menu = (): React.ReactElement => {
       </div>
       <div className={pathname === '/groups' ? styles.linkActive : ''}>
         <Link href="/groups">Группы</Link>
+      </div>
+      <div className={styles.studentsItem}>
+        <StudentsList />
       </div>
     </nav>
   );
